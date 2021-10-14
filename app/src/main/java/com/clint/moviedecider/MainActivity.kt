@@ -2,6 +2,7 @@ package com.clint.moviedecider
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.clint.moviedecider.databinding.ActivityMainBinding
 import java.util.*
 
@@ -28,11 +29,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.buttonAddMovie.setOnClickListener {
-            if (binding.editTextTextAddMovieName.text != null) {
+            if (binding.editTextTextAddMovieName.text.isNotEmpty()) {
                 val newMovie = binding.editTextTextAddMovieName.text.toString()
                 movieList.add(newMovie)
                 binding.editTextTextAddMovieName.text.clear()
                 println("movieList $movieList")
+            } else {
+                Toast.makeText(this, "Please enter a movie name", Toast.LENGTH_SHORT).show()
             }
         }
     }
